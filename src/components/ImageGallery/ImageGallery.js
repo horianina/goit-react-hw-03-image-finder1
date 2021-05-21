@@ -1,6 +1,7 @@
-import React from "react";
-import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
-import { ImageGalleryContainer } from "./ImageGalleryStyled";
+import React from 'react';
+import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+
+import { ImageGalleryContainer } from './ImageGalleryStyled';
 
 const ImageGallery = ({ articles }) => {
   // const { articles } = this.state;
@@ -8,7 +9,7 @@ const ImageGallery = ({ articles }) => {
     <ImageGalleryContainer>
       <ul className="ImageGallery">
         {articles.length > 0 &&
-          articles.map((article) => (
+          articles.map(article => (
             <ImageGalleryItem
               key={article.id}
               {...article}

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-const ImageGalleryItem = ({ id, webformatURL }) => {
+const ImageGalleryItem = ({ id, webformatURL, onClick }) => {
   return (
-    <li className="ImageGalleryItem" key={id}>
+    <li className="ImageGalleryItem" key={id} onClick={onClick}>
       <img
         src={webformatURL}
         alt="articles"

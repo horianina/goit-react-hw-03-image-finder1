@@ -13,7 +13,8 @@ const ImageGallery = ({ articles }) => {
             <ImageGalleryItem
               key={article.id}
               {...article}
-              src={article.webformatURL}
+              webformatURL={article.webformatURL}
+              largeImageURL={article.largeImageURL}
             />
           ))}
       </ul>

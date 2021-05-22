@@ -12,9 +12,7 @@ class App extends Component {
     currentPage: 1,
     searchQuery: '',
     isLoading: false,
-    selectedImageURL: false,
-
-    // showModal: false,
+    largeImageURL: '',
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -44,13 +42,13 @@ class App extends Component {
       .finally(() => this.setState({ isLoading: false }));
   };
   togleModal = () => {
-    // this.setState({ selectedImageURL: true });
-    this.setState(({ selectedImageURL }) => ({
-      selectedImageURL: !selectedImageURL,
+    this.setState(({ largeImageURL }) => ({
+      largeImageURL: !largeImageURL,
     }));
   };
+
   render() {
-    const { articles, isLoading, selectedImageURL } = this.state;
+    const { articles, isLoading, largeImageURL } = this.state;
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       behavior: 'smooth',
@@ -61,12 +59,13 @@ class App extends Component {
 
         <ImageGallery articles={articles} onClick={this.fetchArticles} />
 
+        {largeImageURL && (
+          <Modal onClick={this.togleModal} largeImageURL={largeImageURL} />
+        )}
         {isLoading && <Loader />}
         {articles.length > 0 && (
           <Button type="button" onClick={this.fetchArticles} />
         )}
-
-        {selectedImageURL && <Modal />}
       </>
     );
   }

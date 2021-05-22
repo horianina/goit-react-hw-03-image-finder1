@@ -1,40 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { ModalContainer } from '../Modal/ModalStyled';
 
-export default class Modal extends Component {
-  componentDidMount() {
-    console.log('Modal componentDidMount');
-  }
-  componentWillUnmount() {
-    console.log('Modal componentWillUnmount');
-  }
-  render() {
-    return (
-      <>
-        <ModalContainer>
-          <div className="Overlay">
-            <div className="Modal" key={this.id}>
-              <img src={this.largeImageURL} alt="articles" />
-            </div>
+const Modal = ({ largeImageURL, onClick }) => {
+  return (
+    <>
+      <ModalContainer>
+        <div className="Overlay" onClick={onClick}>
+          <div className="Modal">
+            <img src={largeImageURL} alt="articles" />
           </div>
-        </ModalContainer>
-      </>
-    );
-  }
-}
-// const Modal = ({ largeImageURL, id, onClick }) => {
-//   return (
-//     <>
-//       <ModalContainer>
-//         <div className="Overlay">
-//           <div className="Modal" key={id}>
-//             <img src={largeImageURL} alt="articles" onClick={onClick} />
-//           </div>
-//         </div>
-//       </ModalContainer>
-//     </>
-//   );
-// };
+        </div>
+      </ModalContainer>
+    </>
+  );
+};
 
-// export default Modal;
+export default Modal;

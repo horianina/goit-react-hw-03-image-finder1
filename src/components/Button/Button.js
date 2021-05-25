@@ -1,5 +1,6 @@
-import React from "react";
-import { ButtonContainer } from "./ButtonStyled";
+import React from 'react';
+import { ButtonContainer } from './ButtonStyled';
+import PropTypes from 'prop-types';
 
 const Button = ({ onClick }) => {
   return (
@@ -11,4 +12,7 @@ const Button = ({ onClick }) => {
   );
 };
 
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 export default Button;

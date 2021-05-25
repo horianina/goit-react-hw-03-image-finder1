@@ -1,10 +1,9 @@
 import React from 'react';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
-
 import { ImageGalleryContainer } from './ImageGalleryStyled';
+import PropTypes from 'prop-types';
 
-const ImageGallery = ({ articles }) => {
-  // const { articles } = this.state;
+const ImageGallery = ({ articles, onImgClick }) => {
   return (
     <ImageGalleryContainer>
       <ul className="ImageGallery">
@@ -12,13 +11,17 @@ const ImageGallery = ({ articles }) => {
           articles.map(article => (
             <ImageGalleryItem
               key={article.id}
-              {...article}
               webformatURL={article.webformatURL}
               largeImageURL={article.largeImageURL}
+              onImgClick={onImgClick}
             />
           ))}
       </ul>
     </ImageGalleryContainer>
   );
+};
+ImageGallery.propTypes = {
+  articles: PropTypes.array.isRequired,
+  onImgClick: PropTypes.func.isRequired,
 };
 export default ImageGallery;

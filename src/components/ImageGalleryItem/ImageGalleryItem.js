@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const ImageGalleryItem = ({ id, webformatURL, onClick }) => {
+const ImageGalleryItem = ({ webformatURL, largeImageURL, onImgClick }) => {
   return (
-    <li className="ImageGalleryItem" key={id} onClick={onClick}>
+    <li className="ImageGalleryItem" onClick={() => onImgClick(largeImageURL)}>
       <img
         src={webformatURL}
         alt="articles"
@@ -11,5 +12,9 @@ const ImageGalleryItem = ({ id, webformatURL, onClick }) => {
     </li>
   );
 };
-
+ImageGalleryItem.propTypes = {
+  largeImageURL: PropTypes.string.isRequired,
+  webformatURL: PropTypes.string.isRequired,
+  onImgClick: PropTypes.func.isRequired,
+};
 export default ImageGalleryItem;

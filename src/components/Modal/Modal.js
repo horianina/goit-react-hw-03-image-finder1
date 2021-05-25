@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { ModalContainer } from '../Modal/ModalStyled';
+import PropTypes from 'prop-types';
 
 const Modal = ({ largeImageURL, onClick }) => {
   return (
@@ -15,5 +15,8 @@ const Modal = ({ largeImageURL, onClick }) => {
     </>
   );
 };
-
+Modal.propTypes = {
+  largeImageURL: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 export default Modal;

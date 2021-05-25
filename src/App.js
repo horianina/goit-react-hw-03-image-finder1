@@ -13,6 +13,7 @@ class App extends Component {
     searchQuery: '',
     isLoading: false,
     largeImageURL: '',
+    isVisible: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -38,28 +39,29 @@ class App extends Component {
           articles: [...prevState.articles, ...response.data.hits],
           currentPage: prevState.currentPage + 1,
         }));
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth',
+        });
       })
       .finally(() => this.setState({ isLoading: false }));
   };
-  togleModal = () => {
-    this.setState(({ largeImageURL }) => ({
-      largeImageURL: !largeImageURL,
+  togleModal = imgUrl => {
+    this.setState(prevState => ({
+      isVisible: !prevState.isVisible,
+      largeImageURL: imgUrl,
     }));
   };
 
   render() {
-    const { articles, isLoading, largeImageURL } = this.state;
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: 'smooth',
-    });
+    const { articles, isLoading, largeImageURL, isVisible } = this.state;
     return (
       <>
         <Searchbar onSubmit={this.onChangeQuery} />
 
-        <ImageGallery articles={articles} onClick={this.fetchArticles} />
+        <ImageGallery articles={articles} onImgClick={this.togleModal} />
 
-        {largeImageURL && (
+        {isVisible && (
           <Modal onClick={this.togleModal} largeImageURL={largeImageURL} />
         )}
         {isLoading && <Loader />}
